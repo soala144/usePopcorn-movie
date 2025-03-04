@@ -46,6 +46,7 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
+
 function Navbar{
   const [query, setQuery] = useState("");
 
@@ -68,10 +69,8 @@ function Navbar{
   </nav>
   )
 }
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-export default function App() {
+function Main(){
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isOpen1, setIsOpen1] = useState(true);
@@ -80,12 +79,7 @@ export default function App() {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));
-
-  return (
-    <>
-      
-      <Navbar />
-      <main className="main">
+ return( <main className="main">
         <div className="box">
           <button
             className="btn-toggle"
@@ -167,7 +161,19 @@ export default function App() {
             </>
           )}
         </div>
-      </main>
+      </main>)
+}
+const average = (arr) =>
+  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+
+export default function App() {
+  
+
+  return (
+    <>
+      
+      <Navbar />
+      
     </>
   );
 }
