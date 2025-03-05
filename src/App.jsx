@@ -30,7 +30,11 @@ export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   return (
     <>
-      <Navbar movies={movies} />
+      <Navbar>
+        <Logo />
+        <Search />
+        <NumResult movies={movies} />
+      </Navbar>
       <Main movies={movies} />
     </>
   );
