@@ -5,7 +5,8 @@ const containerStyle = {
   alignItems: "center",
   gap: "16px",
 };
-
+const KEY = "";
+// http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}
 const StarContainerStyle = {
   display: "flex",
 };
@@ -32,6 +33,7 @@ const StarRating = ({
     color,
     fontSize: `${size / 1.5}px`,
   };
+
   return (
     <div style={containerStyle} className={className}>
       <div style={StarContainerStyle}>
