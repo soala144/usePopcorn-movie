@@ -1,7 +1,7 @@
 import React from "react";
 
-const ErrorMessages = ({ messages }) => {
-  return <div>ErrorMessages</div>;
+const ErrorMessages = ({ message }) => {
+  return <div>{message}</div>;
 };
 
 export default ErrorMessages;
