@@ -61,40 +61,51 @@ const tempWatchedData = [
 const KEY = "61a1f619";
 
 export default function App() {
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const query = "interstellar";
-  useEffect(function () {
-    async function searchMovies() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-        );
+  const tempQuery = "interstellar";
+  useEffect(
+    function () {
+      async function searchMovies() {
+        try {
+          setIsLoading(true);
+          setError(""); // Since it is in sync with the query state
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          );
 
-        if (!res.ok)
-          throw new Error("Something wnt wrong with fetching movies");
-        const data = await res.json();
+          if (!res.ok)
+            throw new Error("Something wnt wrong with fetching movies");
+          const data = await res.json();
 
-        if (data.Response === "False") throw new Error("Movie not found");
-        setMovies(data.Search);
-      } catch (err) {
-        console.error(err.msg);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+          if (data.Response === "False") throw new Error("Movie not found");
+          setMovies(data.Search);
+        } catch (err) {
+          console.error(err.msg);
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
 
-    searchMovies();
-  }, []);
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+
+      searchMovies();
+    },
+    [query]
+  );
   return (
     <>
       <Navbar>
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResult movies={movies} />
       </Navbar>
 
