@@ -76,6 +76,10 @@ export default function App() {
   function handleCloseMovie() {
     setSelectedId(null);
   }
+
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
   useEffect(
     function () {
       async function searchMovies() {
@@ -133,6 +137,7 @@ export default function App() {
             <SelectedMovie
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie}
+              onAddWatchedMovie={handleAddWatched}
             />
           ) : (
             <>
