@@ -12,7 +12,7 @@ const SelectedMovie = ({
   const [userRating, setUserRating] = useState("");
   const [movie, setMovie] = useState({});
   const isWatched = watched.map((movies) => movies.imdbID).includes(selectedId);
-  console.log(isWatched);
+
   const {
     Title: title,
     Year: year,
@@ -28,7 +28,7 @@ const SelectedMovie = ({
 
   function handleAdd() {
     const newMovieList = {
-      imdbId: selectedId,
+      imdbID: selectedId,
       title,
       year,
       poster,
