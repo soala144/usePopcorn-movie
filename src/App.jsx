@@ -119,6 +119,7 @@ export default function App() {
         setError("");
         return;
       }
+      handleCloseMovie();
 
       if (err.name) searchMovies();
 
