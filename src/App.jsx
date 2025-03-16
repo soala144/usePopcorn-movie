@@ -84,14 +84,17 @@ export default function App() {
   function handleWatchedDelete(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
   useEffect(
     function () {
+      const controller = new AbortController();
       async function searchMovies() {
         try {
           setIsLoading(true);
           setError(""); // Since it is in sync with the query state
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            { signal: controller.signal }
           );
 
           if (!res.ok)
@@ -102,9 +105,12 @@ export default function App() {
           setMovies(data.Search);
         } catch (err) {
           console.error(err.msg);
-          setError(err.message);
+          if (err.message === "SbortError") {
+            setError(err.message);
+          }
         } finally {
           setIsLoading(false);
+          setError("");
         }
       }
 
@@ -114,7 +120,11 @@ export default function App() {
         return;
       }
 
-      searchMovies();
+      if (err.name) searchMovies();
+
+      return function () {
+        controller.abort;
+      };
     },
     [query]
   );
