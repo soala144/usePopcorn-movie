@@ -4,4 +4,8 @@ Author of the project: Jonas.
 
 Features:
 ✅ Able to search for movies.
-✅ Get more information of the movies 
+
+✅ Get more information of the movie.
+
+✅ Rate any movie.
+
