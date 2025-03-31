@@ -2,7 +2,15 @@ This is a clean project from the tutorial I took. Thid project showcases useEffe
 
 Author of the project: Jonas.
 
+Implementations:
+- Reusable star component
+- useEffect Hook
+- useState Hook
+- Detuved States
+- Prevented prop drilling. etc 
+
 Features:
+
 ✅ Able to search for movies.
 
 ✅ Get more information of the movie.
