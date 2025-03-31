@@ -3,3 +3,5 @@ This is a clean project from the tutorial I took. Thid project showcases useEffe
 Author of the project: Jonas.
 
 Features:
+✅ Able to search for movies.
+✅ Get more information of the movies 
